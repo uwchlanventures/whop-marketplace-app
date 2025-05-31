@@ -2,6 +2,9 @@ import { whopApi } from "@/lib/whop-api";
 import { verifyUserToken } from "@whop/api";
 import { headers } from "next/headers";
 
+import { gql, useQuery } from '@apollo/client';
+import client from '@/lib/apollo-client';
+
 export default async function ExperiencePage({
   params,
 }: {
@@ -24,6 +27,8 @@ export default async function ExperiencePage({
   const user = (await whopApi.getUser({ userId })).publicUser;
   const experience = (await whopApi.getExperience({ experienceId })).experience;
 
+  const companyId = experience.company.id;
+
   // Either: 'admin' | 'customer' | 'no_access';
   // 'admin' means the user is an admin of the whop, such as an owner or moderator
   // 'customer' means the user is a common member in this whop
@@ -45,6 +50,10 @@ export default async function ExperiencePage({
         <strong>@{user.username}</strong>.<br />
         <br />
         You are viewing the experience: <strong>{experience.name}</strong>
+		  <br />
+		  The company ID is <strong>{companyId}</strong>
+		  <br />
+		  The experience ID is <strong>{experienceId}</strong>
       </h1>
     </div>
   );

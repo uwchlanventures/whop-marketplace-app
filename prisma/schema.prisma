@@ -1,0 +1,88 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Marketplace {
+	id String @id @default(uuid()) @db.Uuid
+	experienceId String
+	title String
+	takeRate Int
+	active Boolean @default(true)
+	createdAt DateTime @default(now())
+	updatedAt? DateTime @updatedAt
+	deletedAt? DateTime
+}
+
+model MarketplaceItem {
+	id String @id @default(uuid()) @db.Uuid
+	postedBy String
+	title String
+	priceInCents Int
+	description String
+	purchased Boolean @default(false)
+	active Boolean @default(true)
+	createdAt DateTime @default(now())
+	updatedAt? DateTime @updatedAt
+	deletedAt? DateTime
+	marketplaceId String @db.Uuid
+	marketplace Marketplace @relation(fields: [marketplaceId], references: [id])
+}
+
+model MarketplaceItemImage {
+	id String @id @default(uuid()) @db.Uuid
+	storageLocation String
+	active Boolean @default(true)
+	marketplaceItemId String @db.Uuid
+	marketplaceItem MarketplaceItem @relation(fields: [marketplaceItemId], references: [id])
+}
+
+model MarketplaceItemVideo {
+	id String @id @default(uuid()) @db.Uuid
+	storageLocation String
+	active Boolean @default(true)
+	marketplaceItemId String @db.Uuid
+	marketplaceItem MarketplaceItem @relation(fields: [marketplaceItemId], references: [id])
+}
+
+model MarketplaceItemChat {
+	id String @id @default(uuid()) @db.Uuid
+	inquirerId String
+	lastMessagePreview String
+	lastMessageTimestamp DateTime
+	lastMessageAuthorId String
+	active Boolean @default(true)
+	marketplaceItemId String @db.Uuid
+	marketplaceItem MarketplaceItem @relation(fields: [marketplaceItemId], references: [id])
+}
+
+model MarketplaceItemChatMessage {
+	id String @id @default(uuid()) @db.Uuid
+	authorId String
+	content String
+	active Boolean @default(true)
+	createdAt DateTime @default(now())
+	updatedAt? DateTime @updatedAt
+	deletedAt? DateTime
+	marketplaceItemChatId String @db.Uuid
+	marketplaceItemChat MarketplaceItemChat @relation(fields: [marketplaceItemChatId], references: [id])
+}
+
+model MarketplaceItemPurchase {
+	id String @id @default(uuid()) @db.Uuid
+	purchasedBy String
+	purchasedAt DateTime @default(now())
+	marketplaceItemId String @db.Uuid
+	marketplaceItem MarketplaceItem @relation(fields: [marketplaceItemId], references: [id])
+}
