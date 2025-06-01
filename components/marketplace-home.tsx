@@ -115,7 +115,7 @@ export default function MarketplaceHome({
         
         <div className="flex space-x-3 mt-4 md:mt-0">
           <Link 
-            href={`/experiences/${experienceId}/marketplace/${marketplace.id}/items/create`}
+            href={`/experiences/${experienceId}/marketplace/${marketplace.id}/create-item`}
           >
             <Button>
               <Plus className="mr-2 h-4 w-4" />
@@ -158,7 +158,7 @@ export default function MarketplaceHome({
           </p>
           <div className="mt-6">
             <Link 
-              href={`/experiences/${experienceId}/marketplace/${marketplace.id}/items/create`}
+              href={`/experiences/${experienceId}/marketplace/${marketplace.id}/create-item`}
             >
               <Button>
                 <Plus className="-ml-1 mr-2 h-5 w-5" />
