@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Pencil, Plus } from 'lucide-react';
+import { Pencil, Plus, ArrowLeft } from 'lucide-react';
 import type { AccessLevel } from '@whop/api';
 
 interface MarketplaceItem {
@@ -104,9 +104,13 @@ export default function MarketplaceHome({
           {marketplace.description && (
             <p className="mt-2 text-gray-600">{marketplace.description}</p>
           )}
-          <p className="text-sm text-gray-500 mt-1">
-            Take rate: {marketplace.takeRate}%
-          </p>
+          <Link 
+            href={`/experiences/${experienceId}`}
+            className="text-sm text-indigo-600 hover:text-indigo-800 hover:underline mt-1 inline-flex items-center"
+          >
+            <ArrowLeft className="h-3 w-3 mr-1" />
+            Back to Marketplaces
+          </Link>
         </div>
         
         <div className="flex space-x-3 mt-4 md:mt-0">
