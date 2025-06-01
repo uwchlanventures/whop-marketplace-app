@@ -170,35 +170,43 @@ export default function MarketplaceHome({
       ) : (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((item) => (
-            <div
-              key={item.id}
-              className="bg-white overflow-hidden shadow rounded-lg hover:shadow-md transition-shadow duration-200"
-            >
-              {item.imageUrl && (
-                <div className="h-48 bg-gray-200 overflow-hidden">
-                  <img
-                    src={item.imageUrl}
-                    alt={item.title}
-                    className="w-full h-full object-cover"
-                  />
+            <div key={item.id} className="group">
+              <Link
+                href={`/experiences/${experienceId}/marketplace/${marketplace.id}/item/${item.id}`}
+                className="block bg-white overflow-hidden shadow rounded-lg hover:shadow-md transition-shadow duration-200"
+              >
+                <div>
+                  {item.imageUrl && (
+                    <div className="h-48 bg-gray-200 overflow-hidden">
+                      <img
+                        src={item.imageUrl}
+                        alt={item.title}
+                        className="w-full h-full object-cover group-hover:opacity-90 transition-opacity"
+                      />
+                    </div>
+                  )}
+                  <div className="p-6">
+                    <h3 className="text-lg font-medium text-gray-900 line-clamp-1">
+                      {item.title}
+                    </h3>
+                    <p className="mt-1 text-sm text-gray-500 line-clamp-2">
+                      {item.description}
+                    </p>
+                    <div className="mt-4 flex items-center justify-between">
+                      <span className="text-lg font-semibold text-gray-900">
+                        {formatPrice(item.priceInCents)}
+                      </span>
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        asChild
+                      >
+                        <span>View Details</span>
+                      </Button>
+                    </div>
+                  </div>
                 </div>
-              )}
-              <div className="p-6">
-                <h3 className="text-lg font-medium text-gray-900 line-clamp-1">
-                  {item.title}
-                </h3>
-                <p className="mt-1 text-sm text-gray-500 line-clamp-2">
-                  {item.description}
-                </p>
-                <div className="mt-4 flex items-center justify-between">
-                  <span className="text-lg font-semibold text-gray-900">
-                    {formatPrice(item.priceInCents)}
-                  </span>
-                  <Button variant="outline" size="sm">
-                    View Details
-                  </Button>
-                </div>
-              </div>
+              </Link>
             </div>
           ))}
         </div>

@@ -1,9 +1,4 @@
-'use client';
-
 import { notFound } from 'next/navigation';
-// import { headers } from 'next/headers';
-// import { whopApi } from '@/lib/whop-api';
-// import { verifyUserToken } from '@whop/api';
 import { prisma } from '@/lib/db';
 import CreateMarketplaceItem from '@/components/create-marketplace-item';
 
@@ -15,27 +10,10 @@ export default async function CreateItemPage({
   params: { experienceId: string; marketplaceId: string };
 }) {
   try {
-   //  // Get user token from headers
-   //  const headersList = await headers();
-   //  const { userId } = await verifyUserToken(headersList);
-    
-   //  // Check if user has access to the experience
-   //  const result = await whopApi.checkIfUserHasAccessToExperience({
-   //    userId,
-   //    experienceId: params.experienceId,
-   //  });
-
-   //  if (!result.hasAccessToExperience) {
-   //    return notFound();
-   //  }
-
     // Verify the marketplace exists and is active
     const marketplace = await prisma.marketplace.findUnique({
       where: {
-        id: params.marketplaceId,
-        experienceId: params.experienceId,
-        active: true,
-        deletedAt: null,
+        id: params.marketplaceId
       },
     });
 

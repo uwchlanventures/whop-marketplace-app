@@ -1,13 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { z } from 'zod';
+import { headers } from 'next/headers';
+import { verifyUserToken } from '@whop/api';
 
 // Define the validation schema
 const createItemSchema = z.object({
   title: z.string().min(1, 'Title is required').max(200, 'Title is too long'),
   description: z.string().min(1, 'Description is required').max(5000, 'Description is too long'),
   priceInCents: z.number().int().min(0, 'Price must be a positive number'),
-  postedBy: z.string().min(1, 'Poster ID is required'),
 });
 
 // POST /api/marketplaces/[marketplaceId]/items
@@ -41,7 +42,11 @@ export async function POST(
     }
 
 
-    const { title, description, priceInCents, postedBy } = validation.data;
+    // Get the current user from the auth token
+    const headersList = await headers();
+    const { userId } = await verifyUserToken(headersList);
+
+    const { title, description, priceInCents } = validation.data;
 
     // Check if marketplace exists and is active
     const marketplace = await prisma.marketplace.findFirst({
@@ -65,7 +70,7 @@ export async function POST(
         title,
         description,
         priceInCents,
-        postedBy,
+        postedBy: userId, // Use the authenticated user's ID
         marketplaceId,
       },
       select: {

@@ -2,9 +2,6 @@ import { whopApi } from "@/lib/whop-api";
 import { verifyUserToken } from "@whop/api";
 import { headers } from "next/headers";
 
-import { gql, useQuery } from '@apollo/client';
-import client from '@/lib/apollo-client';
-
 import ExperienceHome from "@/components/experience-home";
 
 export default async function ExperiencePage({
