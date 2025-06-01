@@ -5,6 +5,8 @@ import { headers } from "next/headers";
 import { gql, useQuery } from '@apollo/client';
 import client from '@/lib/apollo-client';
 
+import ExperienceHome from "@/components/experience-home";
+
 export default async function ExperiencePage({
   params,
 }: {
@@ -36,25 +38,11 @@ export default async function ExperiencePage({
   const { accessLevel } = result.hasAccessToExperience;
 
   return (
-    <div className="flex justify-center items-center h-screen px-8">
-      <h1 className="text-xl">
-        Hi <strong>{user.name}</strong>, you{" "}
-        <strong>
-          {result.hasAccessToExperience.hasAccess ? "have" : "do not have"}{" "}
-          access
-        </strong>{" "}
-        to this experience. Your access level to this whop is:{" "}
-        <strong>{accessLevel}</strong>. <br />
-        <br />
-        Your user ID is <strong>{userId}</strong> and your username is{" "}
-        <strong>@{user.username}</strong>.<br />
-        <br />
-        You are viewing the experience: <strong>{experience.name}</strong>
-		  <br />
-		  The company ID is <strong>{companyId}</strong>
-		  <br />
-		  The experience ID is <strong>{experienceId}</strong>
-      </h1>
+	<div className="flex flex-col gap-4 p-4 h-screen items-center justify-center">
+      <ExperienceHome
+        accessLevel={accessLevel}
+        experienceId={experienceId}
+      />
     </div>
   );
 }
