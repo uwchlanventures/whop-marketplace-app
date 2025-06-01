@@ -53,6 +53,9 @@ importers:
       tailwind-merge:
         specifier: ^3.3.0
         version: 3.3.0
+      zod:
+        specifier: ^3.25.46
+        version: 3.25.46
     devDependencies:
       '@biomejs/biome':
         specifier: ^1.9.4
@@ -1074,8 +1077,8 @@ packages:
   zen-observable@0.8.15:
     resolution: {integrity: sha512-PQ2PC7R9rslx84ndNBZB/Dkv8V8fZEpk83RLgXtYd0fwUgEjseMn1Dgajh2x6S8QbZAFa9p2qVCEuYZNgve0dQ==}
 
-  zod@3.25.20:
-    resolution: {integrity: sha512-z03fqpTMDF1G02VLKUMt6vyACE7rNWkh3gpXVHgPTw28NPtDFRGvcpTtPwn2kMKtQ0idtYJUTxchytmnqYswcw==}
+  zod@3.25.46:
+    resolution: {integrity: sha512-IqRxcHEIjqLd4LNS/zKffB3Jzg3NwqJxQQ0Ns7pdrvgGkwQsEBdEQcOHaBVqvvZArShRzI39+aMST3FBGmTrLQ==}
 
 snapshots:
 
@@ -1457,7 +1460,7 @@ snapshots:
     dependencies:
       '@whop-apps/core': 0.0.1-canary.111
       '@whop-apps/typed-transport': 0.0.1-canary.111
-      zod: 3.25.20
+      zod: 3.25.46
 
   '@whop-apps/oauth@0.0.1-canary.111':
     dependencies:
@@ -1465,7 +1468,7 @@ snapshots:
       '@whop-apps/core': 0.0.1-canary.111
       '@whop-apps/iframe': 0.0.1-canary.111
       '@whop-apps/typed-api': 0.0.1-canary.111
-      zod: 3.25.20
+      zod: 3.25.46
 
   '@whop-apps/sdk@0.0.1-canary.111(react@19.1.0)':
     dependencies:
@@ -1490,7 +1493,7 @@ snapshots:
 
   '@whop-apps/typed-transport@0.0.1-canary.111':
     dependencies:
-      zod: 3.25.20
+      zod: 3.25.46
 
   '@whop/api@0.0.21-canary.5':
     dependencies:
@@ -1942,4 +1945,4 @@ snapshots:
 
   zen-observable@0.8.15: {}
 
-  zod@3.25.20: {}
+  zod@3.25.46: {}
