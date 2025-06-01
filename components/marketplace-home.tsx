@@ -129,17 +129,6 @@ export default function MarketplaceHome({
               </Button>
             </Link>
           )}
-          
-          {accessLevel === 'admin' && (
-            <Link 
-              href={`/experiences/${experienceId}/marketplace/${marketplace.id}/edit`}
-            >
-              <Button variant="outline">
-                <Pencil className="mr-2 h-4 w-4" />
-                Edit Marketplace
-              </Button>
-            </Link>
-          )}
         </div>
       </div>
 
